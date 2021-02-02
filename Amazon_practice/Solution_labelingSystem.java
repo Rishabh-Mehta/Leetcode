@@ -55,7 +55,7 @@ class Solution_labelingSystem {
         return result.toString();
     }
     public static void main(String[] args){
-        System.out.println(labelingSystem("zzzzkskhfbsasdasdaaa",3));
+        System.out.println(labelingSystem("zzzzzzbz",3));
         
     }
 }
