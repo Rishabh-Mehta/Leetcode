@@ -40,34 +40,66 @@ Guaranteed constraints:
 
 
 ```
-int[][] serverFarm(int[] jobs, int servers) {
-    List<List<Integer>> result = new List<List<Integer>>();
-    int time = 0;
-    int scheduled = jobs;
-    //index ,jobtime
-    HashMap<Integer,Integer> map = new HashMap<>();
-    for(int i=0;i<jobs.length;i++){
-        map.put(i, jobs[i]);
-    }
-    PriorityQueue<Integer> maxHeap = new PriorityQueue<>((a,b)->map.get(b)-map.get(a));
-    maxHeap.addAll(map.keySet());
-    int curr_min = Integer.MAX_VALUE;
-    while(scheduled != 0){
-        
-        for(int i=0;i<result.length;i++){
-            
+List<List<Integer>> serverFarm(int[] jobs, int servers) {
+    List<List<Integer>> result = new ArrayList<List<Integer>>();
+        int scheduled = jobs.length;
+        //index ,jobtime
+        HashMap<Integer,Integer> map = new HashMap<>();
+        for(int i=0;i<jobs.length;i++){
+            map.put(i, jobs[i]);
+        }
+        Comparator<Integer> comp = new Comparator<Integer>(){
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                // TODO Auto-generated method stub
+                if(map.get(o1) == map.get(o2))
+                    return o1-o2;
+                else
+                    return map.get(o2) - map.get(o1);
+
             }
+        };
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(comp);
+        // System.out.println("Map "+map);
+        maxHeap.addAll(map.keySet());
+        // System.out.println("Heap "+ maxHeap);
+        int curr_min = Integer.MAX_VALUE;
+        List<Integer> time = new ArrayList<>();
+        int k = 0;
+        while(result.size() != servers )
+        {   result.add(new ArrayList<Integer>());
+            if(!maxHeap.isEmpty())
+            {
+            int curr_jobId = maxHeap.remove();
+            result.get(k).add(curr_jobId);
+            time.add(map.get(curr_jobId));
+            curr_min = Math.min(curr_min,map.get(curr_jobId));
+            scheduled--;
+            k++;
+            }
+        }
+        // System.out.println("Heap after inital servers "+ maxHeap);
+        // System.out.println("time elapsed "+time);
+        
+        while(!maxHeap.isEmpty() && scheduled !=0)
+        {   
+            int curr_jobId = maxHeap.remove();
+            
+            curr_min = Collections.min(time);
+            for(int i=0;i<servers;i++){
+                if(time.get(i) <= curr_min){
+                    result.get(i).add(curr_jobId);
+                    scheduled--;
+                    time.set(i,time.get(i)+map.get(curr_jobId));
+                    break;
+                    
+                }
+                }
             
         }
         
+            
+         return result;        
     }
-    
-    
-    
-
-
-    return result;
-}
-
 ```
 

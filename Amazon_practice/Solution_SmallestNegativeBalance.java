@@ -36,10 +36,10 @@ public class Solution_SmallestNegativeBalance {
         records.add(r1);
         records.add(r2);
         debtRecord r3 = new debtRecord();
-        // r3.borrower = "China";
-        // r3.lender = "Japan";
-        // r3.amount = 5;
-        // records.add(r3);
+        r3.borrower = "China";
+        r3.lender = "Japan";
+        r3.amount = 5;
+        records.add(r3);
        System.out.println( minimumDebtMembers(records));
         
     }
