@@ -15,18 +15,18 @@ public class serverFarm {
         Comparator<Integer> comp = new Comparator<Integer>(){
             @Override
             public int compare(Integer o1, Integer o2) {
-                // TODO Auto-generated method stub
+                
                 if(map.get(o1) == map.get(o2))
                     return o1-o2;
                 else
-                    return map.get(o1) - map.get(o2);
+                    return map.get(o2) - map.get(o1);
 
             }
         };
         PriorityQueue<Integer> maxHeap = new PriorityQueue<>(comp);
-        // System.out.println("Map "+map);
+        System.out.println("Map "+map);
         maxHeap.addAll(map.keySet());
-        // System.out.println("Heap "+ maxHeap);
+        System.out.println("Heap "+ maxHeap);
         int curr_min = Integer.MAX_VALUE;
         List<Integer> time = new ArrayList<>();
         int k = 0;
@@ -71,7 +71,7 @@ public class serverFarm {
     
     
     public static void main(String[] args) {
-        int jobs[] = {8, 7, 15, 15, 13, 6, 18, 4, 16, 1, 2, 19, 2, 15, 18, 6, 20, 16, 10, 7, 3, 7, 9, 7, 12, 1, 16, 15, 7, 12, 20, 17, 17, 4, 20, 15, 20, 6, 15, 3, 5, 17, 5, 5, 19, 17, 4, 15, 2, 7};
+        int jobs[] = {15, 2, 14, 14, 14, 258};
         int servers = 9;
         List<List<Integer>> res =serverFarmSchedule(jobs, servers);
         System.out.println(res);
