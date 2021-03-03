@@ -1,4 +1,7 @@
-# packBlocks
+# packBlocks / 410. [Leetcode]Split Array Largest Sum
+
+(Similar to 410. Split Array Largest Sum  Given an array nums which consists of non-negative integers and an integer m, you can split the array into m non-empty continuous subarrays.
+Write an algorithm to minimize the largest sum among these m subarrays)
 
 You are given array of integers called blocks. Each of the values in this array represents the width of a block - the ith block has a height of 1 and a width of blocks[i] (i.e. it's a 1 x blocks[i] block).
 
