@@ -27,7 +27,7 @@ public class Cutoff_Ranks {
                 
             }
             curr_rank++;
-            //System.out.println(rank[i]);
+            System.out.println(rank[i]);
             if(rank[i] <= cutOffRank && scores[i] > 0){
                 level_up++;
             }
